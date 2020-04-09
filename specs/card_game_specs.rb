@@ -10,7 +10,16 @@ class TestCardGame < MiniTest::Test
   def setup()
     @card1 = Card.new('Club', 3)
     @card2 = Card.new('Hearts', 14)
+    @card3 = Card.new('Diamond', 2)
     @cards = [@card1, @card2]
+  end
+
+  def test_get_suit()
+    assert_equal('Hearts', @card2.suit())
+  end
+
+  def test_get_value()
+    assert_equal(3, @card1.value())
   end
 
   def test_check_for_ace__true()
@@ -23,6 +32,7 @@ class TestCardGame < MiniTest::Test
 
   def test_highest_card()
     assert_equal(@card2, CardGame.highest_card(@card1, @card2))
+    assert_equal(@card1, CardGame.highest_card(@card1, @card3))
   end
 
   def test_cards_total()
